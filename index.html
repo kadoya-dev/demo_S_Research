@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>セラーサーチ画面</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="card">
+        <h2 class="section-title">インポートエリア</h2>
+        <div class="import-row">
+          <div class="import-left">
+            <label class="field inline-field">
+              <span>ASIN</span>
+              <input type="text" maxlength="15" size="15" class="asin-input" placeholder="ASINを入力" />
+            </label>
+            <label class="field inline-field">
+              <span>CSV</span>
+              <input type="file" accept=".csv" />
+            </label>
+          </div>
+          <button class="btn btn--primary">インポート</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="section-title">検索条件</h2>
+        <p class="sub-note">※ 現在はダミー表示です（検索機能は未実装）</p>
+
+        <div class="toggle-wrap" id="searchWrap">
+          <button class="chip toggle-btn" type="button" id="toggleSearch" aria-expanded="false" aria-controls="searchPanel">検索条件を表示/閉じる</button>
+
+          <div class="search-grid" id="searchPanel" hidden>
+            <label class="field"><span>ショップ名</span><input type="text" value="SAKURA" /></label>
+            <label class="field"><span>セラーID</span><input type="text" value="A1TLC7SLSGY000" /></label>
+            <label class="field"><span>評価</span><select><option>★★★☆☆ 以上</option></select></label>
+            <label class="field"><span>最終リサーチ日</span><input type="date" value="2025-11-10" /></label>
+            <label class="field"><span>メモ欄</span><select><option>指定なし</option></select></label>
+            <label class="field"><span>未取扱ASIN数（ストック）</span><div class="pair"><input type="number" value="30" /><small>以上</small></div></label>
+            <label class="field"><span>未取扱ASIN数（仕入れたことが有る）</span><div class="pair"><input type="number" value="20" /><small>以上</small></div></label>
+            <label class="field"><span>単価（中央値）</span><div class="pair"><input type="number" value="3000" /><small>円以下</small></div></label>
+            <label class="field"><span>出品ASIN数</span><div class="pair"><input type="number" value="50" /><small>以上</small></div></label>
+          </div>
+        </div>
+
+        <hr class="divider" />
+
+        <h2 class="section-title">並び替え</h2>
+        <div class="sort-row">
+          <button class="chip chip--active">評価</button>
+          <button class="chip">最終リサーチ日</button>
+          <button class="chip">未取扱ASIN数（ストック）</button>
+          <button class="chip">未取扱ASIN数（仕入れたことが有る）</button>
+          <button class="chip">単価（中央値）</button>
+          <button class="chip">出品ASIN数</button>
+        </div>
+        <div class="actions">
+          <button class="btn btn--sub">条件リセット</button>
+          <button class="btn btn--primary">検索</button>
+        </div>
+      </section>
+
+      <section class="card list-card" aria-label="セラーリサーチ一覧">
+        <div class="list-head">
+          <h2 class="section-title">セラーリサーチ一覧</h2>
+          <div class="list-head-actions">
+            <button class="btn btn--dashed">表示ブロック</button>
+            <button class="btn btn--go">ASINリサーチへ進む</button>
+          </div>
+        </div>
+        <table class="seller-table">
+          <thead>
+            <tr>
+              <th class="check-col">☑</th>
+              <th>ショップ名</th>
+              <th>評価</th>
+              <th class="memo-head"><span>メモ欄</span><button class="mini-btn">更新</button></th>
+              <th>最終リサーチ日</th>
+              <th>未取扱ASIN数<br />（ストック）</th>
+              <th>未取扱ASIN数<br />（仕入れたことが有る）</th>
+              <th>単価<br />（中央値）</th>
+              <th>出品ASIN数</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="checkbox" aria-label="1行目を選択" /></td><td><a href="#">SAKURA COOL JAPAN</a></td><td>★★★☆☆</td><td><input class="memo-input" type="text" value="💖" /></td><td>2025/11/10</td>
+              <td>99<br /><input type="radio" name="row1" aria-label="1行目 ストック99" /></td>
+              <td>999<br /><input type="radio" name="row1" aria-label="1行目 仕入れ有り999" /></td>
+              <td>¥3,000</td>
+              <td>1700<br /><input type="radio" name="row1" aria-label="1行目 出品1700" /></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" aria-label="2行目を選択" /></td><td>SEVEN STAR JAPAN</td><td>★★☆☆☆</td><td><input class="memo-input" type="text" value="💀" /></td><td>-</td>
+              <td>37<br /><input type="radio" name="row2" aria-label="2行目 ストック37" /></td>
+              <td>30<br /><input type="radio" name="row2" aria-label="2行目 仕入れ有り30" /></td>
+              <td>¥4,280</td>
+              <td>52<br /><input type="radio" name="row2" aria-label="2行目 出品52" /></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" aria-label="3行目を選択" /></td><td>SAKURA COOL JAPAN</td><td>★★★☆☆</td><td><input class="memo-input" type="text" placeholder="メモ入力" /></td><td>-</td>
+              <td>242<br /><input type="radio" name="row3" aria-label="3行目 ストック242" /></td>
+              <td>142<br /><input type="radio" name="row3" aria-label="3行目 仕入れ有り142" /></td>
+              <td>¥2,680</td>
+              <td>292<br /><input type="radio" name="row3" aria-label="3行目 出品292" /></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <script>
+      const toggleButton = document.getElementById('toggleSearch');
+      const searchPanel = document.getElementById('searchPanel');
+      const searchWrap = document.getElementById('searchWrap');
+
+      toggleButton.addEventListener('click', () => {
+        const willOpen = searchPanel.hidden;
+        searchPanel.hidden = !willOpen;
+        toggleButton.setAttribute('aria-expanded', String(willOpen));
+        searchWrap.classList.toggle('is-open', willOpen);
+      });
+    </script>
+  </body>
+</html>
