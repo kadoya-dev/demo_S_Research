@@ -8,68 +8,19 @@
   </head>
   <body>
     <main class="page">
-      <header class="mode-tabs">
-        <span class="mode-label">モード切替</span>
-        <button class="tab tab--active">セラー（SAMURAI SHOP）</button>
-        <button class="tab">ストック</button>
-        <button class="tab">仕入れリスト</button>
-        <button class="tab">後で仕入れる</button>
-      </header>
-
       <section class="card">
         <h2 class="section-title">検索条件</h2>
         <p class="sub-note">※ セラー一覧に合わせた条件で絞り込み</p>
 
         <div class="search-grid">
-          <label class="field">
-            <span>ショップ名</span>
-            <input type="text" value="SAKURA" />
-          </label>
-          <label class="field">
-            <span>評価</span>
-            <select>
-              <option>★★★☆☆ 以上</option>
-            </select>
-          </label>
-          <label class="field">
-            <span>メモ欄</span>
-            <select>
-              <option>指定なし</option>
-            </select>
-          </label>
-          <label class="field">
-            <span>最終リサーチ日</span>
-            <input type="date" value="2025-11-10" />
-          </label>
-
-          <label class="field">
-            <span>未取扱ASIN数（ストック）</span>
-            <div class="pair">
-              <input type="number" value="30" />
-              <small>以上</small>
-            </div>
-          </label>
-          <label class="field">
-            <span>未取扱ASIN数（仕入れたことが有る）</span>
-            <div class="pair">
-              <input type="number" value="20" />
-              <small>以上</small>
-            </div>
-          </label>
-          <label class="field">
-            <span>単価（中央値）</span>
-            <div class="pair">
-              <input type="number" value="3000" />
-              <small>円以下</small>
-            </div>
-          </label>
-          <label class="field">
-            <span>出品ASIN数</span>
-            <div class="pair">
-              <input type="number" value="50" />
-              <small>以上</small>
-            </div>
-          </label>
+          <label class="field"><span>ショップ名</span><input type="text" value="SAKURA" /></label>
+          <label class="field"><span>評価</span><select><option>★★★☆☆ 以上</option></select></label>
+          <label class="field"><span>メモ欄</span><select><option>指定なし</option></select></label>
+          <label class="field"><span>最終リサーチ日</span><input type="date" value="2025-11-10" /></label>
+          <label class="field"><span>未取扱ASIN数（ストック）</span><div class="pair"><input type="number" value="30" /><small>以上</small></div></label>
+          <label class="field"><span>未取扱ASIN数（仕入れたことが有る）</span><div class="pair"><input type="number" value="20" /><small>以上</small></div></label>
+          <label class="field"><span>単価（中央値）</span><div class="pair"><input type="number" value="3000" /><small>円以下</small></div></label>
+          <label class="field"><span>出品ASIN数</span><div class="pair"><input type="number" value="50" /><small>以上</small></div></label>
         </div>
       </section>
 
@@ -89,51 +40,54 @@
         </div>
       </section>
 
+      <section class="card">
+        <h2 class="section-title">インポートエリア</h2>
+        <div class="import-grid">
+          <label class="field">
+            <span>ASIN</span>
+            <textarea rows="2" placeholder="ASINを入力"></textarea>
+          </label>
+          <label class="field">
+            <span>CSV</span>
+            <input type="file" accept=".csv" />
+          </label>
+        </div>
+      </section>
+
       <section class="card list-card" aria-label="セラーリサーチ一覧">
-        <h2 class="section-title">セラーリサーチ一覧</h2>
+        <div class="list-head">
+          <h2 class="section-title">セラーリサーチ一覧</h2>
+          <button class="btn btn--go">ASINリサーチへ進む</button>
+        </div>
         <table class="seller-table">
           <thead>
             <tr>
-              <th>ショップ名</th>
-              <th>評価</th>
-              <th>メモ欄</th>
-              <th>最終リサーチ日</th>
-              <th>未取扱ASIN数<br />（ストック）</th>
-              <th>未取扱ASIN数<br />（仕入れたことが有る）</th>
-              <th>単価<br />（中央値）</th>
-              <th>出品ASIN数</th>
+              <th>ショップ名</th><th>評価</th><th>メモ欄</th><th>最終リサーチ日</th>
+              <th>未取扱ASIN数<br />（ストック）</th><th>未取扱ASIN数<br />（仕入れたことが有る）</th>
+              <th>単価<br />（中央値）</th><th>出品ASIN数</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><a href="#">SAKURA COOL JAPAN</a></td>
-              <td>★★★☆☆</td>
-              <td>💖</td>
-              <td>2025/11/10</td>
-              <td>99</td>
-              <td>999</td>
+              <td><a href="#">SAKURA COOL JAPAN</a></td><td>★★★☆☆</td><td>💖</td><td>2025/11/10</td>
+              <td>99<br /><input type="radio" name="stock" aria-label="ストック99" /></td>
+              <td>999<br /><input type="radio" name="handled" aria-label="仕入れ有り999" /></td>
               <td>¥3,000</td>
-              <td>1700</td>
+              <td>1700<br /><input type="radio" name="listing" aria-label="出品1700" /></td>
             </tr>
             <tr>
-              <td>SEVEN STAR JAPAN</td>
-              <td>★★☆☆☆</td>
-              <td>💀</td>
+              <td>SEVEN STAR JAPAN</td><td>★★☆☆☆</td><td>💀</td><td>-</td>
+              <td>37<br /><input type="radio" name="stock" aria-label="ストック37" /></td>
+              <td>30<br /><input type="radio" name="handled" aria-label="仕入れ有り30" /></td>
               <td>-</td>
-              <td>37</td>
-              <td>30</td>
-              <td>-</td>
-              <td>52</td>
+              <td>52<br /><input type="radio" name="listing" aria-label="出品52" /></td>
             </tr>
             <tr>
-              <td>SAKURA COOL JAPAN</td>
-              <td>★★★☆☆</td>
+              <td>SAKURA COOL JAPAN</td><td>★★★☆☆</td><td>-</td><td>-</td>
+              <td>242<br /><input type="radio" name="stock" aria-label="ストック242" /></td>
+              <td>142<br /><input type="radio" name="handled" aria-label="仕入れ有り142" /></td>
               <td>-</td>
-              <td>-</td>
-              <td>242</td>
-              <td>142</td>
-              <td>-</td>
-              <td>292</td>
+              <td>292<br /><input type="radio" name="listing" aria-label="出品292" /></td>
             </tr>
           </tbody>
         </table>
