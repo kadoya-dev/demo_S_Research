@@ -6,7 +6,7 @@
   --muted: #6f7b95;
   --accent-soft: #e5e8ff;
   --mint: #c7ebe3;
-  --header: #aab4cc;
+  --header: #4e6dca;
 }
 * { box-sizing: border-box; }
 body {
@@ -46,6 +46,7 @@ body {
   padding: 8px 12px;
   font-size: 14px;
 }
+.asin-input { width: 15ch !important; }
 .pair { display: flex; gap: 8px; align-items: center; }
 .pair small { min-width: 52px; color: var(--muted); font-size: 12px; }
 
@@ -71,6 +72,16 @@ body {
 .btn--sub { background: #ebedfa; border-color: #b9c1e8; }
 .btn--primary { background: var(--mint); border-color: #9edacc; }
 .btn--go { background: #dce3f6; border-color: #b4c0e8; color: #2c3c69; }
+.mini-btn {
+  margin-left: 8px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid #b6c3ef;
+  background: #f2f5ff;
+  color: #294078;
+  font-size: 12px;
+  font-weight: 700;
+}
 
 .import-grid {
   display: grid;
@@ -105,6 +116,7 @@ body {
   text-align: center;
   border-right: 1px solid rgba(255, 255, 255, 0.3);
 }
+.memo-head { white-space: nowrap; }
 .seller-table td {
   padding: 12px 10px;
   background: #fff;
@@ -112,6 +124,14 @@ body {
   border-bottom: 1px solid var(--line);
   border-right: 1px solid #eef1f7;
   font-size: 15px;
+}
+.memo-input {
+  width: 100%;
+  min-width: 84px;
+  height: 32px;
+  border: 1px solid #cfd7e8;
+  border-radius: 8px;
+  padding: 0 8px;
 }
 .seller-table tbody tr:nth-child(even) td { background: #f8faff; }
 .seller-table th:first-child, .seller-table td:first-child { text-align: left; }
