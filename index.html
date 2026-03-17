@@ -9,7 +9,7 @@
   <body>
     <main class="page">
       <section class="card">
-        <h2 class="section-title">インポートエリア</h2>
+        <h2 class="section-title">インポート</h2>
         <div class="import-row">
           <div class="import-left">
             <label class="field inline-field">
@@ -65,11 +65,15 @@
       <section class="card list-card" aria-label="セラーリサーチ一覧">
         <div class="list-head">
           <h2 class="section-title">セラーリサーチ一覧</h2>
-          <button class="btn btn--go">ASINリサーチへ進む</button>
+          <div class="list-head-actions">
+            <button class="btn btn--dashed">表示ブロック</button>
+            <button class="btn btn--go">ASINリサーチへ進む</button>
+          </div>
         </div>
         <table class="seller-table">
           <thead>
             <tr>
+              <th class="check-col">☑</th>
               <th>ショップ名</th>
               <th>評価</th>
               <th class="memo-head"><span>メモ欄</span><button class="mini-btn">更新</button></th>
@@ -82,21 +86,21 @@
           </thead>
           <tbody>
             <tr>
-              <td><a href="#">SAKURA COOL JAPAN</a></td><td>★★★☆☆</td><td><input class="memo-input" type="text" value="💖" /></td><td>2025/11/10</td>
+              <td><input type="checkbox" aria-label="1行目を選択" /></td><td><a href="#">SAKURA COOL JAPAN</a></td><td>★★★☆☆</td><td><input class="memo-input" type="text" value="💖" /></td><td>2025/11/10</td>
               <td>99<br /><input type="radio" name="row1" aria-label="1行目 ストック99" /></td>
               <td>999<br /><input type="radio" name="row1" aria-label="1行目 仕入れ有り999" /></td>
               <td>¥3,000</td>
               <td>1700<br /><input type="radio" name="row1" aria-label="1行目 出品1700" /></td>
             </tr>
             <tr>
-              <td>SEVEN STAR JAPAN</td><td>★★☆☆☆</td><td><input class="memo-input" type="text" value="💀" /></td><td>-</td>
+              <td><input type="checkbox" aria-label="2行目を選択" /></td><td>SEVEN STAR JAPAN</td><td>★★☆☆☆</td><td><input class="memo-input" type="text" value="💀" /></td><td>-</td>
               <td>37<br /><input type="radio" name="row2" aria-label="2行目 ストック37" /></td>
               <td>30<br /><input type="radio" name="row2" aria-label="2行目 仕入れ有り30" /></td>
               <td>¥4,280</td>
               <td>52<br /><input type="radio" name="row2" aria-label="2行目 出品52" /></td>
             </tr>
             <tr>
-              <td>SAKURA COOL JAPAN</td><td>★★★☆☆</td><td><input class="memo-input" type="text" placeholder="メモ入力" /></td><td>-</td>
+              <td><input type="checkbox" aria-label="3行目を選択" /></td><td>SAKURA COOL JAPAN</td><td>★★★☆☆</td><td><input class="memo-input" type="text" placeholder="メモ入力" /></td><td>-</td>
               <td>242<br /><input type="radio" name="row3" aria-label="3行目 ストック242" /></td>
               <td>142<br /><input type="radio" name="row3" aria-label="3行目 仕入れ有り142" /></td>
               <td>¥2,680</td>

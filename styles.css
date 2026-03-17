@@ -85,6 +85,7 @@ body {
 .btn--sub { background: #ebedfa; border-color: #b9c1e8; }
 .btn--primary { background: var(--mint); border-color: #9edacc; }
 .btn--go { background: #dce3f6; border-color: #b4c0e8; color: #2c3c69; }
+.btn--dashed { background: #f7f9ff; border: 2px dashed #9eb0e6; color: #2f447f; }
 .mini-btn {
   margin-left: 8px;
   padding: 4px 10px;
@@ -126,6 +127,11 @@ body {
   gap: 12px;
   margin-bottom: 10px;
 }
+.list-head-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
 
 .seller-table {
   width: 100%;
@@ -163,7 +169,8 @@ body {
   padding: 0 8px;
 }
 .seller-table tbody tr:nth-child(even) td { background: #f8faff; }
-.seller-table th:first-child, .seller-table td:first-child { text-align: left; }
+.check-col { width: 52px; }
+.seller-table th:nth-child(2), .seller-table td:nth-child(2) { text-align: left; }
 .seller-table th:last-child, .seller-table td:last-child { border-right: none; }
 .seller-table a { color: #2f467f; }
 .seller-table input[type="radio"] { margin-top: 6px; }
