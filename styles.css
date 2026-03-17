@@ -85,7 +85,6 @@ body {
 .btn--sub { background: #ebedfa; border-color: #b9c1e8; }
 .btn--primary { background: var(--mint); border-color: #9edacc; }
 .btn--go { background: #dce3f6; border-color: #b4c0e8; color: #2c3c69; }
-.btn--dashed { background: #f7f9ff; border: 2px dashed #9eb0e6; color: #2f447f; }
 .mini-btn {
   margin-left: 8px;
   padding: 4px 10px;
@@ -95,6 +94,12 @@ body {
   color: #294078;
   font-size: 12px;
   font-weight: 700;
+}
+.mini-btn--top {
+  margin-left: 0;
+  padding: 10px 22px;
+  font-size: 16px;
+  border-radius: 12px;
 }
 
 .import-row {
