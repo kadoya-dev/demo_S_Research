@@ -9,10 +9,31 @@
   <body>
     <main class="page">
       <section class="card">
-        <h2 class="section-title">検索条件</h2>
-        <p class="sub-note">※ セラー一覧に合わせた条件で絞り込み</p>
+        <h2 class="section-title">インポートエリア</h2>
+        <div class="import-row">
+          <div class="import-left">
+            <label class="field inline-field">
+              <span>ASIN</span>
+              <input type="text" maxlength="15" size="15" class="asin-input" placeholder="ASINを入力" />
+            </label>
+            <label class="field inline-field">
+              <span>CSV</span>
+              <input type="file" accept=".csv" />
+            </label>
+          </div>
+          <button class="btn btn--primary">インポート</button>
+        </div>
+      </section>
 
-        <div class="search-grid">
+      <section class="card">
+        <h2 class="section-title">検索条件</h2>
+        <p class="sub-note">※ 現在はダミー表示です（検索機能は未実装）</p>
+
+        <div class="toggle-wrap">
+          <button class="chip toggle-btn" type="button" id="toggleSearch" aria-expanded="false" aria-controls="searchPanel">検索条件を表示/閉じる</button>
+        </div>
+
+        <div class="search-grid" id="searchPanel" hidden>
           <label class="field"><span>ショップ名</span><input type="text" value="SAKURA" /></label>
           <label class="field"><span>セラーID</span><input type="text" value="SELLER-001" /></label>
           <label class="field"><span>評価</span><select><option>★★★☆☆ 以上</option></select></label>
@@ -23,10 +44,10 @@
           <label class="field"><span>単価（中央値）</span><div class="pair"><input type="number" value="3000" /><small>円以下</small></div></label>
           <label class="field"><span>出品ASIN数</span><div class="pair"><input type="number" value="50" /><small>以上</small></div></label>
         </div>
-      </section>
 
-      <section class="card">
-        <h2 class="section-title">ソート条件</h2>
+        <hr class="divider" />
+
+        <h2 class="section-title">並び替え</h2>
         <div class="sort-row">
           <button class="chip chip--active">評価</button>
           <button class="chip">最終リサーチ日</button>
@@ -38,20 +59,6 @@
         <div class="actions">
           <button class="btn btn--sub">条件リセット</button>
           <button class="btn btn--primary">検索</button>
-        </div>
-      </section>
-
-      <section class="card">
-        <h2 class="section-title">インポートエリア</h2>
-        <div class="import-grid">
-          <label class="field">
-            <span>ASIN</span>
-            <input type="text" maxlength="15" size="15" class="asin-input" placeholder="ASINを入力" />
-          </label>
-          <label class="field">
-            <span>CSV</span>
-            <input type="file" accept=".csv" />
-          </label>
         </div>
       </section>
 
@@ -99,5 +106,15 @@
         </table>
       </section>
     </main>
+
+    <script>
+      const toggleButton = document.getElementById('toggleSearch');
+      const searchPanel = document.getElementById('searchPanel');
+      toggleButton.addEventListener('click', () => {
+        const willOpen = searchPanel.hidden;
+        searchPanel.hidden = !willOpen;
+        toggleButton.setAttribute('aria-expanded', String(willOpen));
+      });
+    </script>
   </body>
 </html>
