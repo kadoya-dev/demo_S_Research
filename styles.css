@@ -95,7 +95,12 @@ body {
   font-size: 12px;
   font-weight: 700;
 }
-.mini-btn--top { margin-left: 0; }
+.mini-btn--top {
+  margin-left: 0;
+  padding: 10px 22px;
+  font-size: 16px;
+  border-radius: 12px;
+}
 
 .import-row {
   display: flex;
