@@ -34,16 +34,19 @@ body {
   padding: 12px;
   margin-bottom: 10px;
 }
+.toggle-wrap.is-open {
+  background: #e9effb;
+}
 
 .search-grid {
-  border: 1px dashed #bfcaef;
-  background: #edf8f5;
-  border-radius: 14px;
+  border: 1px solid #b8dfd3;
+  background: #dff0eb;
+  border-radius: 18px;
   padding: 14px;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
-  margin-bottom: 14px;
+  margin-top: 12px;
 }
 .field { display: flex; flex-direction: column; gap: 6px; font-weight: 700; font-size: 14px; }
 .field input, .field select, .field textarea {
