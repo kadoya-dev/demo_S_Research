@@ -124,6 +124,14 @@ body {
 .tooltip-trigger:focus-visible::before {
   opacity: 1;
 }
+.tooltip-trigger--left::after {
+  left: 0;
+  transform: translateX(0);
+}
+.tooltip-trigger--left::before {
+  left: 28px;
+  transform: translateX(0);
+}
 .tooltip-icon {
   display: inline-flex;
   align-items: center;
