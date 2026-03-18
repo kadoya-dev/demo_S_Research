@@ -16,7 +16,7 @@ body {
   color: var(--text);
   font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
 }
-.page { width: min(1180px, 94vw); margin: 18px auto 28px; }
+.page { width: min(1400px, 96vw); margin: 18px auto 28px; }
 .card {
   background: var(--card);
   border: 1px solid #dde1ef;
@@ -26,6 +26,7 @@ body {
   margin-bottom: 14px;
 }
 .section-title { margin: 0 0 4px; font-size: 24px; }
+.section-title--sub { font-size: 18px; margin-bottom: 10px; }
 .sub-note { margin: 0 0 12px; color: var(--muted); font-size: 13px; }
 
 .toggle-wrap {
@@ -38,7 +39,18 @@ body {
 .toggle-wrap.is-open {
   background: #e9effb;
 }
-
+.search-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+}
+.import-box {
+  border: 1px solid #c7d3f2;
+  background: #f3f6ff;
+  border-radius: 18px;
+  padding: 14px;
+}
 .search-grid {
   border: 1px solid #b8dfd3;
   background: #dff0eb;
@@ -47,7 +59,10 @@ body {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
-  margin-top: 12px;
+}
+.search-grid-title {
+  grid-column: 1 / -1;
+  margin-bottom: 2px;
 }
 .field { display: flex; flex-direction: column; gap: 6px; font-weight: 700; font-size: 14px; }
 .field input, .field select, .field textarea {
@@ -59,11 +74,95 @@ body {
   padding: 8px 12px;
   font-size: 14px;
 }
+.field-label-with-tip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.field-label-with-tip--header {
+  position: relative;
+  cursor: help;
+  white-space: nowrap;
+}
+.tooltip-trigger::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 12px);
+  transform: translateX(-50%);
+  width: min(320px, 70vw);
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(39, 51, 77, 0.96);
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: left;
+  white-space: normal;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  box-shadow: 0 6px 18px rgba(24, 34, 56, 0.18);
+  z-index: 20;
+}
+.tooltip-trigger::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 1px);
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-bottom-color: rgba(39, 51, 77, 0.96);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 20;
+}
+.tooltip-trigger:hover::after,
+.tooltip-trigger:hover::before,
+.tooltip-trigger:focus-visible::after,
+.tooltip-trigger:focus-visible::before {
+  opacity: 1;
+}
+.tooltip-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  background: #fff;
+  color: #4e6dca;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  flex-shrink: 0;
+}
 .asin-input { width: 15ch !important; }
 .pair { display: flex; gap: 8px; align-items: center; }
 .pair small { min-width: 52px; color: var(--muted); font-size: 12px; }
-
-.sort-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.checkbox-field {
+  justify-content: flex-end;
+}
+.checkbox-field-spacer {
+  visibility: hidden;
+  line-height: 1;
+}
+.checkbox-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  font-weight: 700;
+}
+.checkbox-field input[type="checkbox"] {
+  width: 20px;
+  min-height: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: #4e6dca;
+}
 .chip {
   border: 1px solid #9db0f0;
   border-radius: 999px;
@@ -74,7 +173,7 @@ body {
   font-weight: 700;
 }
 .chip--active { background: var(--accent-soft); border-color: #7f91e4; }
-.actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 12px; }
+.actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px; }
 .btn {
   border: 1px solid transparent;
   border-radius: 12px;
@@ -142,9 +241,9 @@ body {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  overflow: hidden;
+  overflow: visible;
   border-radius: 14px;
-  border: 1px solid #d7dce9;
+  box-shadow: inset 0 0 0 1px #d7dce9;
 }
 .seller-table th {
   background: var(--header);
@@ -152,11 +251,50 @@ body {
   font-weight: 700;
   font-size: 14px;
   line-height: 1.35;
-  padding: 12px 10px;
+  padding: 0;
   text-align: center;
   border-right: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: visible;
 }
+.seller-table thead th:first-child { border-top-left-radius: 14px; }
+.seller-table thead th:last-child { border-top-right-radius: 14px; }
+.seller-table th:last-child .sort-button { border-top-right-radius: 14px; }
+.seller-table tbody tr:last-child td { border-bottom: none; }
+.seller-table tbody tr:last-child td:first-child { border-bottom-left-radius: 14px; }
+.seller-table tbody tr:last-child td:last-child { border-bottom-right-radius: 14px; }
+.seller-table th.check-col { padding: 12px 10px; }
 .memo-head { white-space: nowrap; }
+.sort-button {
+  width: 100%;
+  min-height: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 10px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: inherit;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.sort-button:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.sort-button:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.85);
+  outline-offset: -2px;
+}
+.sort-indicator {
+  font-size: 12px;
+  line-height: 1;
+  opacity: 0.9;
+  flex-shrink: 0;
+}
 .seller-table td {
   padding: 12px 10px;
   background: #fff;
@@ -174,8 +312,9 @@ body {
   padding: 0 8px;
 }
 .seller-table tbody tr:nth-child(even) td { background: #f8faff; }
-.check-col { width: 52px; }
+.check-col { width: 80px; }
 .seller-table th:nth-child(2), .seller-table td:nth-child(2) { text-align: left; }
+.seller-table th:nth-child(2) .sort-button { justify-content: flex-start; }
 .seller-table th:last-child, .seller-table td:last-child { border-right: none; }
 .seller-table a { color: #2f467f; }
 .seller-table input[type="radio"] { margin-top: 6px; }
