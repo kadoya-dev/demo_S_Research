@@ -141,6 +141,16 @@ body {
 .asin-input { width: 15ch !important; }
 .pair { display: flex; gap: 8px; align-items: center; }
 .pair small { min-width: 52px; color: var(--muted); font-size: 12px; }
+.checkbox-field {
+  justify-content: flex-start;
+}
+.checkbox-field input[type="checkbox"] {
+  width: 20px;
+  min-height: 20px;
+  height: 20px;
+  margin-top: 6px;
+  accent-color: #4e6dca;
+}
 .chip {
   border: 1px solid #9db0f0;
   border-radius: 999px;

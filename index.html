@@ -38,8 +38,9 @@
               <label class="field"><span>ショップ名</span><input type="text" value="SAKURA" /></label>
               <label class="field"><span>セラーID</span><input type="text" value="A1TLC7SLSGY000" /></label>
               <label class="field"><span>評価</span><div class="pair"><select><option>★☆☆☆☆</option><option>★★☆☆☆</option><option selected>★★★☆☆</option><option>★★★★☆</option><option>★★★★★</option></select><small>以上</small></div></label>
-              <label class="field"><span>最終リサーチ日</span><input type="date" value="2025-11-10" /></label>
               <label class="field"><span>メモ欄</span><input type="text" value="" placeholder="メモを入力" /></label>
+              <label class="field"><span>最終リサーチ日</span><input type="date" value="2025-11-10" /></label>
+              <label class="field checkbox-field"><span>☑未リサーチ</span><input type="checkbox" aria-label="未リサーチ" /></label>
               <label class="field"><span>未取扱ASIN数（ストック）</span><div class="pair"><input type="number" value="30" /><small>以上</small></div></label>
               <label class="field"><span>未取扱ASIN数（仕入れ有）</span><div class="pair"><input type="number" value="20" /><small>以上</small></div></label>
               <label class="field"><span>単価（中央値）</span><div class="pair"><input type="number" value="3000" /><small>円以下</small></div></label>
@@ -85,14 +86,14 @@
               <td>1700<br /><input type="radio" name="row1" aria-label="1行目 出品1700" /></td>
             </tr>
             <tr>
-              <td><input type="checkbox" aria-label="2行目を選択" /></td><td>SEVEN STAR JAPAN</td><td>★★☆☆☆</td><td><input class="memo-input" type="text" value="💀" /></td><td>-</td>
+              <td><input type="checkbox" aria-label="2行目を選択" /></td><td>SEVEN STAR JAPAN</td><td>★★☆☆☆</td><td><input class="memo-input" type="text" value="💀" /></td><td>未</td>
               <td>37<br /><input type="radio" name="row2" aria-label="2行目 ストック37" /></td>
               <td>30<br /><input type="radio" name="row2" aria-label="2行目 仕入れ有り30" /></td>
               <td>¥4,280</td>
               <td>52<br /><input type="radio" name="row2" aria-label="2行目 出品52" /></td>
             </tr>
             <tr>
-              <td><input type="checkbox" aria-label="3行目を選択" /></td><td>SAKURA COOL JAPAN</td><td>★★★☆☆</td><td><input class="memo-input" type="text" placeholder="メモ入力" /></td><td>-</td>
+              <td><input type="checkbox" aria-label="3行目を選択" /></td><td>SAKURA COOL JAPAN</td><td>★★★☆☆</td><td><input class="memo-input" type="text" placeholder="メモ入力" /></td><td>未</td>
               <td>242<br /><input type="radio" name="row3" aria-label="3行目 ストック242" /></td>
               <td>142<br /><input type="radio" name="row3" aria-label="3行目 仕入れ有り142" /></td>
               <td>¥2,680</td>
@@ -136,7 +137,7 @@
         }
 
         if (type === 'date') {
-          if (!rawText || rawText === '-') return -Infinity;
+          if (!rawText || rawText === '-' || rawText === '未') return -Infinity;
           const normalized = rawText.replace(/\//g, '-');
           const time = Date.parse(normalized);
           return Number.isNaN(time) ? -Infinity : time;
