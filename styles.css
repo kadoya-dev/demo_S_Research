@@ -80,54 +80,63 @@ body {
   justify-content: center;
   gap: 6px;
 }
-.tooltip {
+.field-label-with-tip--header {
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: #4e6dca;
-  color: #fff;
-  font-size: 11px;
-  font-weight: 700;
   cursor: help;
 }
-.tooltip::after {
+.tooltip-trigger::after {
   content: attr(data-tooltip);
   position: absolute;
   left: 50%;
-  bottom: calc(100% + 10px);
+  top: calc(100% + 12px);
   transform: translateX(-50%);
-  width: min(280px, 70vw);
+  width: min(320px, 70vw);
   padding: 10px 12px;
   border-radius: 10px;
   background: rgba(39, 51, 77, 0.96);
   color: #fff;
   font-size: 12px;
   line-height: 1.5;
+  text-align: left;
+  white-space: normal;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s ease;
   box-shadow: 0 6px 18px rgba(24, 34, 56, 0.18);
+  z-index: 20;
 }
-.tooltip::before {
+.tooltip-trigger::before {
   content: "";
   position: absolute;
   left: 50%;
-  bottom: calc(100% + 2px);
+  top: calc(100% + 1px);
   transform: translateX(-50%);
   border: 6px solid transparent;
-  border-top-color: rgba(39, 51, 77, 0.96);
+  border-bottom-color: rgba(39, 51, 77, 0.96);
   opacity: 0;
   transition: opacity 0.2s ease;
+  z-index: 20;
 }
-.tooltip:hover::after,
-.tooltip:hover::before,
-.tooltip:focus-visible::after,
-.tooltip:focus-visible::before {
+.tooltip-trigger:hover::after,
+.tooltip-trigger:hover::before,
+.tooltip-trigger:focus-visible::after,
+.tooltip-trigger:focus-visible::before {
   opacity: 1;
+}
+.tooltip-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  background: #fff;
+  color: #4e6dca;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  flex-shrink: 0;
 }
 .asin-input { width: 15ch !important; }
 .pair { display: flex; gap: 8px; align-items: center; }
@@ -212,7 +221,7 @@ body {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  overflow: hidden;
+  overflow: visible;
   border-radius: 14px;
   border: 1px solid #d7dce9;
 }
@@ -225,6 +234,8 @@ body {
   padding: 12px 10px;
   text-align: center;
   border-right: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: visible;
 }
 .memo-head { white-space: nowrap; }
 .seller-table td {
