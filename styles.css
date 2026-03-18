@@ -141,8 +141,6 @@ body {
 .asin-input { width: 15ch !important; }
 .pair { display: flex; gap: 8px; align-items: center; }
 .pair small { min-width: 52px; color: var(--muted); font-size: 12px; }
-
-.sort-row { display: flex; flex-wrap: wrap; gap: 10px; }
 .chip {
   border: 1px solid #9db0f0;
   border-radius: 999px;
@@ -153,7 +151,7 @@ body {
   font-weight: 700;
 }
 .chip--active { background: var(--accent-soft); border-color: #7f91e4; }
-.actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 12px; }
+.actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px; }
 .btn {
   border: 1px solid transparent;
   border-radius: 12px;
@@ -231,13 +229,43 @@ body {
   font-weight: 700;
   font-size: 14px;
   line-height: 1.35;
-  padding: 12px 10px;
+  padding: 0;
   text-align: center;
   border-right: 1px solid rgba(255, 255, 255, 0.3);
   position: relative;
   overflow: visible;
 }
+.seller-table th.check-col { padding: 12px 10px; }
 .memo-head { white-space: nowrap; }
+.sort-button {
+  width: 100%;
+  min-height: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 10px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: inherit;
+  text-align: center;
+  cursor: pointer;
+}
+.sort-button:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.sort-button:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.85);
+  outline-offset: -2px;
+}
+.sort-indicator {
+  font-size: 12px;
+  line-height: 1;
+  opacity: 0.9;
+  flex-shrink: 0;
+}
 .seller-table td {
   padding: 12px 10px;
   background: #fff;
@@ -257,6 +285,7 @@ body {
 .seller-table tbody tr:nth-child(even) td { background: #f8faff; }
 .check-col { width: 80px; }
 .seller-table th:nth-child(2), .seller-table td:nth-child(2) { text-align: left; }
+.seller-table th:nth-child(2) .sort-button { justify-content: flex-start; }
 .seller-table th:last-child, .seller-table td:last-child { border-right: none; }
 .seller-table a { color: #2f467f; }
 .seller-table input[type="radio"] { margin-top: 6px; }

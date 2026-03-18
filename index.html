@@ -48,17 +48,6 @@
           </div>
         </div>
 
-        <hr class="divider" />
-
-        <h2 class="section-title">並び替え</h2>
-        <div class="sort-row">
-          <button class="chip chip--active">評価</button>
-          <button class="chip">最終リサーチ日</button>
-          <button class="chip">未取扱ASIN数（ストック）</button>
-          <button class="chip">未取扱ASIN数（仕入れ有）</button>
-          <button class="chip">単価（中央値）</button>
-          <button class="chip">出品ASIN数</button>
-        </div>
         <div class="actions">
           <button class="btn btn--sub">条件リセット</button>
           <button class="btn btn--primary">検索</button>
@@ -73,18 +62,18 @@
             <button class="btn btn--go">ASINリサーチへ進む</button>
           </div>
         </div>
-        <table class="seller-table">
+        <table class="seller-table" id="sellerTable">
           <thead>
             <tr>
               <th class="check-col">表示<br />ブロック</th>
-              <th>ショップ名</th>
-              <th>評価</th>
-              <th class="memo-head">メモ欄</th>
-              <th>最終リサーチ日</th>
-              <th><span class="field-label-with-tip field-label-with-tip--header tooltip-trigger" tabindex="0" aria-label="未取扱ASIN数（ストック）の説明" data-tooltip="未取扱ASIN数（ストック）=（対象セラーが出品しているASINの数）-（自分がストックリサーチに登録しているASINの数）">未取扱ASIN数<br />（ストック）<span class="tooltip-icon" aria-hidden="true">?</span></span></th>
-              <th><span class="field-label-with-tip field-label-with-tip--header tooltip-trigger" tabindex="0" aria-label="未取扱ASIN数（仕入れ有）の説明" data-tooltip="未取扱ASIN数（仕入れ有）=（対象セラーが出品しているASINの数）-（自分が仕入れたことのあるASINの数）">未取扱ASIN数<br />（仕入れ有）<span class="tooltip-icon" aria-hidden="true">?</span></span></th>
-              <th>単価<br />（中央値）</th>
-              <th>出品ASIN数</th>
+              <th><button class="sort-button" type="button" data-sort-index="1" data-sort-type="text"><span>ショップ名</span><span class="sort-indicator" aria-hidden="true">⇅</span></button></th>
+              <th><button class="sort-button" type="button" data-sort-index="2" data-sort-type="rating"><span>評価</span><span class="sort-indicator" aria-hidden="true">⇅</span></button></th>
+              <th class="memo-head"><button class="sort-button" type="button" data-sort-index="3" data-sort-type="input-text"><span>メモ欄</span><span class="sort-indicator" aria-hidden="true">⇅</span></button></th>
+              <th><button class="sort-button" type="button" data-sort-index="4" data-sort-type="date"><span>最終リサーチ日</span><span class="sort-indicator" aria-hidden="true">⇅</span></button></th>
+              <th><button class="sort-button tooltip-trigger" type="button" data-sort-index="5" data-sort-type="number" aria-label="未取扱ASIN数（ストック）の説明。クリックで並び替え。" data-tooltip="未取扱ASIN数（ストック）=（対象セラーが出品しているASINの数）-（自分がストックリサーチに登録しているASINの数）"><span class="field-label-with-tip field-label-with-tip--header">未取扱ASIN数<br />（ストック）<span class="tooltip-icon" aria-hidden="true">?</span></span><span class="sort-indicator" aria-hidden="true">⇅</span></button></th>
+              <th><button class="sort-button tooltip-trigger" type="button" data-sort-index="6" data-sort-type="number" aria-label="未取扱ASIN数（仕入れ有）の説明。クリックで並び替え。" data-tooltip="未取扱ASIN数（仕入れ有）=（対象セラーが出品しているASINの数）-（自分が仕入れたことのあるASINの数）"><span class="field-label-with-tip field-label-with-tip--header">未取扱ASIN数<br />（仕入れ有）<span class="tooltip-icon" aria-hidden="true">?</span></span><span class="sort-indicator" aria-hidden="true">⇅</span></button></th>
+              <th><button class="sort-button" type="button" data-sort-index="7" data-sort-type="currency"><span>単価<br />（中央値）</span><span class="sort-indicator" aria-hidden="true">⇅</span></button></th>
+              <th><button class="sort-button" type="button" data-sort-index="8" data-sort-type="number"><span>出品ASIN数</span><span class="sort-indicator" aria-hidden="true">⇅</span></button></th>
             </tr>
           </thead>
           <tbody>
@@ -118,12 +107,82 @@
       const toggleButton = document.getElementById('toggleSearch');
       const searchPanel = document.getElementById('searchPanel');
       const searchWrap = document.getElementById('searchWrap');
+      const sellerTable = document.getElementById('sellerTable');
+      const sortButtons = sellerTable.querySelectorAll('.sort-button');
+      const tableBody = sellerTable.querySelector('tbody');
 
       toggleButton.addEventListener('click', () => {
         const willOpen = searchPanel.hidden;
         searchPanel.hidden = !willOpen;
         toggleButton.setAttribute('aria-expanded', String(willOpen));
         searchWrap.classList.toggle('is-open', willOpen);
+      });
+
+      const getCellValue = (row, index, type) => {
+        const cell = row.cells[index];
+
+        if (!cell) return '';
+
+        if (type === 'input-text') {
+          const input = cell.querySelector('input');
+          return (input?.value || input?.placeholder || '').trim().toLowerCase();
+        }
+
+        const rawText = cell.textContent.replace(/\s+/g, ' ').trim();
+
+        if (type === 'number' || type === 'currency') {
+          const numericText = rawText.replace(/[^0-9.-]/g, '');
+          return numericText ? Number(numericText) : -Infinity;
+        }
+
+        if (type === 'date') {
+          if (!rawText || rawText === '-') return -Infinity;
+          const normalized = rawText.replace(/\//g, '-');
+          const time = Date.parse(normalized);
+          return Number.isNaN(time) ? -Infinity : time;
+        }
+
+        if (type === 'rating') {
+          return (rawText.match(/★/g) || []).length;
+        }
+
+        return rawText.toLowerCase();
+      };
+
+      const updateSortState = (activeButton, direction) => {
+        sortButtons.forEach((button) => {
+          const isActive = button === activeButton;
+          button.dataset.direction = isActive ? direction : 'none';
+          button.setAttribute('aria-sort', isActive ? (direction === 'asc' ? 'ascending' : 'descending') : 'none');
+          const indicator = button.querySelector('.sort-indicator');
+          if (indicator) {
+            indicator.textContent = isActive ? (direction === 'asc' ? '▲' : '▼') : '⇅';
+          }
+        });
+      };
+
+      sortButtons.forEach((button) => {
+        button.dataset.direction = 'none';
+        button.setAttribute('aria-sort', 'none');
+
+        button.addEventListener('click', () => {
+          const index = Number(button.dataset.sortIndex);
+          const type = button.dataset.sortType;
+          const nextDirection = button.dataset.direction === 'asc' ? 'desc' : 'asc';
+          const rows = Array.from(tableBody.querySelectorAll('tr'));
+
+          rows.sort((rowA, rowB) => {
+            const valueA = getCellValue(rowA, index, type);
+            const valueB = getCellValue(rowB, index, type);
+
+            if (valueA === valueB) return 0;
+            if (valueA > valueB) return nextDirection === 'asc' ? 1 : -1;
+            return nextDirection === 'asc' ? -1 : 1;
+          });
+
+          tableBody.append(...rows);
+          updateSortState(button, nextDirection);
+        });
       });
     </script>
   </body>
