@@ -16,7 +16,7 @@ body {
   color: var(--text);
   font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
 }
-.page { width: min(1180px, 94vw); margin: 18px auto 28px; }
+.page { width: min(1400px, 96vw); margin: 18px auto 28px; }
 .card {
   background: var(--card);
   border: 1px solid #dde1ef;
@@ -83,6 +83,7 @@ body {
 .field-label-with-tip--header {
   position: relative;
   cursor: help;
+  white-space: nowrap;
 }
 .tooltip-trigger::after {
   content: attr(data-tooltip);
@@ -278,6 +279,7 @@ body {
   font: inherit;
   font-weight: inherit;
   text-align: center;
+  white-space: nowrap;
   cursor: pointer;
 }
 .sort-button:hover {
