@@ -9,39 +9,42 @@
   <body>
     <main class="page">
       <section class="card">
-        <h2 class="section-title">インポート</h2>
-        <div class="import-row">
-          <div class="import-left">
-            <label class="field inline-field">
-              <span>ASIN</span>
-              <input type="text" maxlength="15" size="15" class="asin-input" placeholder="ASINを入力" />
-            </label>
-            <label class="field inline-field">
-              <span>CSV</span>
-              <input type="file" accept=".csv" />
-            </label>
-          </div>
-          <button class="btn btn--primary">インポート</button>
-        </div>
-      </section>
-
-      <section class="card">
-        <h2 class="section-title">検索条件</h2>
+        <h2 class="section-title">インポート／検索条件</h2>
         <p class="sub-note">※ 現在はダミー表示です（検索機能は未実装）</p>
 
         <div class="toggle-wrap" id="searchWrap">
           <button class="chip toggle-btn" type="button" id="toggleSearch" aria-expanded="false" aria-controls="searchPanel">検索条件を表示/閉じる</button>
 
-          <div class="search-grid" id="searchPanel" hidden>
-            <label class="field"><span>ショップ名</span><input type="text" value="SAKURA" /></label>
-            <label class="field"><span>セラーID</span><input type="text" value="A1TLC7SLSGY000" /></label>
-            <label class="field"><span>評価</span><select><option>★★★☆☆ 以上</option></select></label>
-            <label class="field"><span>最終リサーチ日</span><input type="date" value="2025-11-10" /></label>
-            <label class="field"><span>メモ欄</span><select><option>指定なし</option></select></label>
-            <label class="field"><span>未取扱ASIN数（ストック）</span><div class="pair"><input type="number" value="30" /><small>以上</small></div></label>
-            <label class="field"><span>未取扱ASIN数（仕入れたことが有る）</span><div class="pair"><input type="number" value="20" /><small>以上</small></div></label>
-            <label class="field"><span>単価（中央値）</span><div class="pair"><input type="number" value="3000" /><small>円以下</small></div></label>
-            <label class="field"><span>出品ASIN数</span><div class="pair"><input type="number" value="50" /><small>以上</small></div></label>
+          <div class="search-panel" id="searchPanel" hidden>
+            <div class="import-box" aria-label="インポートエリア">
+              <h3 class="section-title section-title--sub">インポート</h3>
+              <div class="import-row">
+                <div class="import-left">
+                  <label class="field inline-field">
+                    <span>ASIN</span>
+                    <input type="text" maxlength="15" size="15" class="asin-input" placeholder="ASINを入力" />
+                  </label>
+                  <label class="field inline-field">
+                    <span>CSV</span>
+                    <input type="file" accept=".csv" />
+                  </label>
+                </div>
+                <button class="btn btn--primary">インポート</button>
+              </div>
+            </div>
+
+            <div class="search-grid">
+              <h3 class="section-title section-title--sub search-grid-title">検索条件</h3>
+              <label class="field"><span>ショップ名</span><input type="text" value="SAKURA" /></label>
+              <label class="field"><span>セラーID</span><input type="text" value="A1TLC7SLSGY000" /></label>
+              <label class="field"><span>評価</span><select><option>★★★☆☆ 以上</option></select></label>
+              <label class="field"><span>最終リサーチ日</span><input type="date" value="2025-11-10" /></label>
+              <label class="field"><span>メモ欄</span><select><option>指定なし</option></select></label>
+              <label class="field"><span>未取扱ASIN数（ストック）</span><div class="pair"><input type="number" value="30" /><small>以上</small></div></label>
+              <label class="field"><span>未取扱ASIN数（仕入れ有）</span><div class="pair"><input type="number" value="20" /><small>以上</small></div></label>
+              <label class="field"><span>単価（中央値）</span><div class="pair"><input type="number" value="3000" /><small>円以下</small></div></label>
+              <label class="field"><span>出品ASIN数</span><div class="pair"><input type="number" value="50" /><small>以上</small></div></label>
+            </div>
           </div>
         </div>
 
@@ -52,7 +55,7 @@
           <button class="chip chip--active">評価</button>
           <button class="chip">最終リサーチ日</button>
           <button class="chip">未取扱ASIN数（ストック）</button>
-          <button class="chip">未取扱ASIN数（仕入れたことが有る）</button>
+          <button class="chip">未取扱ASIN数（仕入れ有）</button>
           <button class="chip">単価（中央値）</button>
           <button class="chip">出品ASIN数</button>
         </div>
@@ -73,13 +76,13 @@
         <table class="seller-table">
           <thead>
             <tr>
-              <th class="check-col">非表示</th>
+              <th class="check-col">表示<br />ブロック</th>
               <th>ショップ名</th>
               <th>評価</th>
               <th class="memo-head">メモ欄</th>
               <th>最終リサーチ日</th>
-              <th>未取扱ASIN数<br />（ストック）</th>
-              <th>未取扱ASIN数<br />（仕入れたことが有る）</th>
+              <th><span class="field-label-with-tip">未取扱ASIN数<br />（ストック）<span class="tooltip" tabindex="0" aria-label="未取扱ASIN数（ストック）の説明" data-tooltip="未取扱ASIN数（ストック）=（対象セラーが出品しているASINの数）-（自分がストックリサーチに登録しているASINの数）">?</span></span></th>
+              <th><span class="field-label-with-tip">未取扱ASIN数<br />（仕入れ有）<span class="tooltip" tabindex="0" aria-label="未取扱ASIN数（仕入れ有）の説明" data-tooltip="未取扱ASIN数（仕入れ有）=（対象セラーが出品しているASINの数）-（自分が仕入れたことのあるASINの数）">?</span></span></th>
               <th>単価<br />（中央値）</th>
               <th>出品ASIN数</th>
             </tr>
