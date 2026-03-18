@@ -142,13 +142,24 @@ body {
 .pair { display: flex; gap: 8px; align-items: center; }
 .pair small { min-width: 52px; color: var(--muted); font-size: 12px; }
 .checkbox-field {
-  justify-content: flex-start;
+  justify-content: flex-end;
+}
+.checkbox-field-spacer {
+  visibility: hidden;
+  line-height: 1;
+}
+.checkbox-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  font-weight: 700;
 }
 .checkbox-field input[type="checkbox"] {
   width: 20px;
   min-height: 20px;
   height: 20px;
-  margin-top: 6px;
+  margin: 0;
   accent-color: #4e6dca;
 }
 .chip {
