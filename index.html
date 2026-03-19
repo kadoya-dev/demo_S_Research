@@ -111,6 +111,7 @@
       const sellerTable = document.getElementById('sellerTable');
       const sortButtons = sellerTable.querySelectorAll('.sort-button');
       const tableBody = sellerTable.querySelector('tbody');
+      const radioCells = Array.from(tableBody.querySelectorAll('td')).filter((cell) => cell.querySelector('input[type="radio"]'));
 
       toggleButton.addEventListener('click', () => {
         const willOpen = searchPanel.hidden;
@@ -161,6 +162,19 @@
           }
         });
       };
+
+      radioCells.forEach((cell) => {
+        cell.classList.add('radio-cell');
+        cell.addEventListener('click', (event) => {
+          const radio = cell.querySelector('input[type="radio"]');
+
+          if (!radio) return;
+          if (event.target instanceof HTMLInputElement && event.target.type === 'radio') return;
+
+          radio.checked = true;
+          radio.dispatchEvent(new Event('change', { bubbles: true }));
+        });
+      });
 
       sortButtons.forEach((button) => {
         button.dataset.direction = 'none';
